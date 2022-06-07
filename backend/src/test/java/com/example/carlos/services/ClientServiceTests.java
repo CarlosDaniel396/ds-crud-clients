@@ -5,6 +5,8 @@ import static org.mockito.ArgumentMatchers.any;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,6 +56,11 @@ public class ClientServiceTests {
 
 		Mockito.when(repository.getReferenceById(existingId)).thenReturn(client);
 		Mockito.when(repository.getReferenceById(nonExistingId)).thenReturn(client);
+		Mockito.when(repository.getReferenceById(nonExistingId)).thenThrow(EntityNotFoundException.class);
+		
+		Mockito.when(repository.save(any())).thenReturn(client);
+		
+
 	}
 
 	@Test
@@ -79,6 +86,22 @@ public class ClientServiceTests {
 
 		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
 			service.findById(nonExistingId);
+		});
+	}
+	
+	@Test
+	public void updateShouldReturnClientDTOWhenIdExists() {
+
+		ClientDTO result = service.update(existingId, clientDTO);
+
+		Assertions.assertNotNull(result);
+	}
+	
+	@Test
+	public void updateShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
+
+		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+			service.update(nonExistingId, clientDTO);
 		});
 	}
 }
