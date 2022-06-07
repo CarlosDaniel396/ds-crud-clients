@@ -14,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -57,10 +58,11 @@ public class ClientServiceTests {
 		Mockito.when(repository.getReferenceById(existingId)).thenReturn(client);
 		Mockito.when(repository.getReferenceById(nonExistingId)).thenReturn(client);
 		Mockito.when(repository.getReferenceById(nonExistingId)).thenThrow(EntityNotFoundException.class);
-		
-		Mockito.when(repository.save(any())).thenReturn(client);
-		
 
+		Mockito.when(repository.save(any())).thenReturn(client);
+
+		Mockito.doNothing().when(repository).deleteById(existingId);
+		Mockito.doThrow(EmptyResultDataAccessException.class).when(repository).deleteById(nonExistingId);
 	}
 
 	@Test
@@ -88,7 +90,7 @@ public class ClientServiceTests {
 			service.findById(nonExistingId);
 		});
 	}
-	
+
 	@Test
 	public void updateShouldReturnClientDTOWhenIdExists() {
 
@@ -96,12 +98,32 @@ public class ClientServiceTests {
 
 		Assertions.assertNotNull(result);
 	}
-	
+
 	@Test
 	public void updateShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
 
 		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
 			service.update(nonExistingId, clientDTO);
 		});
+	}
+
+	@Test
+	public void deleteShouldDoNothingWhenIdExists() {
+
+		Assertions.assertDoesNotThrow(() -> {
+			service.delete(existingId);
+		});
+
+		Mockito.verify(repository, Mockito.times(1)).deleteById(existingId);
+	}
+
+	@Test
+	public void deleteShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
+
+		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+			service.delete(nonExistingId);
+		});
+
+		Mockito.verify(repository, Mockito.times(1)).deleteById(nonExistingId);
 	}
 }
