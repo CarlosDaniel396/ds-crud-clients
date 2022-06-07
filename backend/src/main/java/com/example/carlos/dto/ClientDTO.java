@@ -15,14 +15,14 @@ public class ClientDTO implements Serializable {
 	private String cpf;
 	private String email;
 	private String address;
-	private Long phoneNumber;
+	private Integer phoneNumber;
 	private String gender;
 	private Instant birthDate;
 
 	public ClientDTO() {
 	}
 
-	public ClientDTO(Long id, String name, String cpf, String email, String address, Long phoneNumber, String gender,
+	public ClientDTO(Long id, String name, String cpf, String email, String address, Integer phoneNumber, String gender,
 			Instant birthDate) {
 		this.id = id;
 		this.name = name;
@@ -85,11 +85,11 @@ public class ClientDTO implements Serializable {
 		this.address = address;
 	}
 
-	public Long getPhoneNumber() {
+	public Integer getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(Long phoneNumber) {
+	public void setPhoneNumber(Integer phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
