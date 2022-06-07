@@ -34,7 +34,7 @@ cd backend
 # coleção postman
 import
 link
-inserir link: https://www.getpostman.com/collections/4f8be5fce03e1edca2ed
+inserir link: https://www.getpostman.com/collections/a3565a05500a8f495baf
 continue
 import 
 ```
