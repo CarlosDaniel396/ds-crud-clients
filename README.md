@@ -1,0 +1,37 @@
+# Ds-crud-clients
+
+Projeto back-end desenvolvido em Java/Spring Boot. A aplicação consiste em um sistema de cadastro de clientes, onde é possível encontrar todos de maneira paginada,
+buscar cliente por id, criar e editar, além de deletar por id.
+
+# Modelo conceitual
+
+# Tecnologias utilizadas
+* Java
+* Spring Boot
+* JPA / Hibernate
+* Maven
+* JUnit
+* Postgresql
+
+# Implantação em produção
+*Back end: Heroku
+
+# Como rodar o projeto
+```
+# Clonar repositório
+git clone https://github.com/CarlosDaniel396/ds-crud-clients.git
+
+# entrar na pasta do projeto back end
+cd backend
+
+# executar o projeto
+./mvnw spring-boot:run
+
+# coleção postman
+import
+link
+inserir link: https://www.getpostman.com/collections/4f8be5fce03e1edca2ed
+continue
+import 
+```
+
