@@ -116,6 +116,14 @@ public class Client implements Serializable {
 		this.birthDate = birthDate;
 	}
 
+	public Instant getCreatedAt() {
+		return createdAt;
+	}
+
+	public Instant getUpdatedAt() {
+		return updatedAt;
+	}
+
 	@PrePersist
 	public void prePersist() {
 		createdAt = Instant.now();
