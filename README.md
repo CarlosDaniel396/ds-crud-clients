@@ -5,6 +5,10 @@ buscar cliente por id, criar e editar, além de deletar por id.
 
 # Modelo conceitual
 
+<div align="center">
+<img src="https://github.com/CarlosDaniel396/ds-crud-clients/blob/master/assets/model.png"/>
+</div>
+
 # Tecnologias utilizadas
 * Java
 * Spring Boot
@@ -14,7 +18,7 @@ buscar cliente por id, criar e editar, além de deletar por id.
 * Postgresql
 
 # Implantação em produção
-*Back end: Heroku
+* Back end: Heroku
 
 # Como rodar o projeto
 ```
