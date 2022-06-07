@@ -3,6 +3,7 @@ package com.example.carlos.services;
 import static org.mockito.ArgumentMatchers.any;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.example.carlos.dto.ClientDTO;
 import com.example.carlos.entities.Client;
 import com.example.carlos.repositories.ClientRepository;
+import com.example.carlos.services.exceptions.ResourceNotFoundException;
 import com.example.carlos.tests.Factory;
 
 @ExtendWith(SpringExtension.class)
@@ -46,6 +48,12 @@ public class ClientServiceTests {
 		page = new PageImpl<>(List.of(client));
 
 		Mockito.when(repository.findAll((Pageable) any())).thenReturn(page);
+
+		Mockito.when(repository.findById(existingId)).thenReturn(Optional.of(client));
+		Mockito.when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
+
+		Mockito.when(repository.getReferenceById(existingId)).thenReturn(client);
+		Mockito.when(repository.getReferenceById(nonExistingId)).thenReturn(client);
 	}
 
 	@Test
@@ -58,4 +66,19 @@ public class ClientServiceTests {
 		Assertions.assertNotNull(result);
 	}
 
+	@Test
+	public void findByIdShouldReturnClientDTOWhenIdExists() {
+
+		ClientDTO result = service.findById(existingId);
+
+		Assertions.assertNotNull(result);
+	}
+
+	@Test
+	public void findByIdShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
+
+		Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+			service.findById(nonExistingId);
+		});
+	}
 }
