@@ -40,4 +40,7 @@ inserir link: https://www.getpostman.com/collections/a3565a05500a8f495baf
 continue
 import 
 ```
-Feito com :heart:
+# Autor
+Carlos Daniel Oliveira Nunes
+
+www.linkedin.com/in/carlos-daniel27
