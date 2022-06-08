@@ -21,6 +21,8 @@ buscar cliente por id, criar e editar, além de deletar por id.
 * Back end: Heroku
 
 # Como rodar o projeto
+
+Pré-requisitos: Java 17
 ```
 # Clonar repositório
 git clone https://github.com/CarlosDaniel396/ds-crud-clients.git
