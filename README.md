@@ -1,7 +1,12 @@
 # Ds-crud-clients
 
-Projeto back-end desenvolvido em Java/Spring Boot. A aplicação consiste em um sistema de cadastro de clientes, onde é possível encontrar todos de maneira paginada,
-buscar cliente por id, criar e editar, além de deletar por id.
+Projeto back-end desenvolvido em Java/Spring Boot. 
+CRUD completo de web services REST para acessar um recurso de clientes, contendo as cinco operações básicas aprendidas no capítulo:
+* Busca paginada de recursos
+* Busca de recurso por id
+* Inserir novo recurso
+* Atualizar recurso
+* Deletar recurso
 
 # Modelo conceitual
 
