@@ -38,12 +38,6 @@ cd backend
 # executar o projeto
 ./mvnw spring-boot:run
 
-# coleção postman
-import
-link
-inserir link: https://www.getpostman.com/collections/a3565a05500a8f495baf
-continue
-import 
 ```
 # Autor
 Carlos Daniel Oliveira Nunes
